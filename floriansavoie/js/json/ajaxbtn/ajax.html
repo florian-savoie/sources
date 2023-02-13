@@ -1,0 +1,63 @@
+<script>
+  function loadDoc() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+    xhttp.open("GET", "ajax.txt", true);
+    xhttp.send();
+  }
+</script>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>tableau json v1</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+
+  </style>
+
+</head>
+
+<body class="">
+  <div class="container-fluid  min-vh-100">
+    <div class="row mt-5 " style="height: 50%;">
+     <div class="container-fluid d-flex justify-content-center">
+      <textarea name="" id="" cols="80" rows="10">
+
+// la function loadDoc fait appelle a l'objet XMLHttpRequest puis a l'element this.responseText qui permet de recuperer le text dans le fichier ajax.txt
+// et de l'afficher dans l'element contenant l'id demo !
+
+        function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("demo").innerHTML = this.responseText;
+    }
+  xhttp.open("GET", "ajax.txt", true);
+  xhttp.send();
+}
+
+<div class="p-5" id="demo" style="background-color: aliceblue;">
+  <h2>Let AJAX change this text</h2>
+  <button type="button" onclick="loadDoc()">Change Content</button>
+</div>
+</textarea>
+</div>
+    </div>
+    <div class="row " style="height: 50%;">
+      <div class="container-fluid align-items-center d-flex justify-content-center">
+      <div class="p-5" id="demo" style="background-color: aliceblue;">
+        <h2>Let AJAX change this text</h2>
+        <button type="button" onclick="loadDoc()">Change Content</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
