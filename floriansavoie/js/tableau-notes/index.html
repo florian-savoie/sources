@@ -1,0 +1,91 @@
+<style>
+td , th {
+    padding: 1rem;
+}
+th{
+    background-color: beige;
+}
+td.prenom {
+text-transform: capitalize;
+background-color: beige;
+}
+td.moyenne{
+    background-color: rgb(159, 159, 143);
+}
+caption{
+    color: red ;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+
+}
+#resultats{
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+</style>
+<div class="block">
+<div id="resultats"></div>
+</div>
+<script>
+
+    const t = [
+    ['aurelien',97,96,92,96],//note sur 100 quizz html , quizz css , page produit
+    ['benjamin',90,92,92,92],
+    ['Fares',98,88,92,100],
+    ['florian',87,100,92,100],
+    ['mercutio',100,96,92,92],
+    ['quentin',84,87,92,78],
+    ['samuel',82,76,92,0]
+];
+let moyennehtml = 0 ;
+let moyennecss = 0 ;
+let moyennemaquette = 0 ;
+let moyennemajs = 0 ;
+
+let s = '<table border="1" style="border-collapse:collapse;" >'+
+        '<caption><strong>Resultat des tests DWWWM</strong> </caption>'+
+        '<th>prenom</th>'+
+        '<th>html</th>'+
+        '<th>css</th>'+
+        '<th>maquette</th>'+
+        '<th>js</th>'+
+        '<th>moyenne %</th>';
+ for ( n in t) {
+    moyennehtml += t[n][1] ;
+    moyennecss += t[n][2] ;
+    moyennemaquette += t[n][3] ;
+    moyennemajs += t[n][4] ;
+    notesur400 = (t[n][1]+t[n][2]+t[n][3]+t[n][4])/((t[n].length)-1);
+s += '<tr>'+
+      '<td class="prenom" >'+t[n][0]+'</td>'+
+      '<td>'+t[n][1]+'%</td>'+
+      '<td>'+t[n][2]+'%</td>'+
+      '<td>'+t[n][3]+'%</td>'+
+      '<td>'+t[n][4]+'%</td>'+
+      '<td>'+notesur400+'%</td>'+
+      '</tr>';
+ }
+
+ moyennehtml /= t.length;
+ moyennecss /= t.length;
+ moyennemaquette /= t.length;
+ moyennemajs /= t.length;
+ moyennegeneral = (moyennehtml+moyennecss+moyennemaquette+moyennemajs)/4;
+s += '<tr>'+
+      '<td class="moyenne">Moyenne </td>'+
+      '<td>'+Math.round(moyennehtml)+'%</td>'+
+      '<td>'+Math.round(moyennecss)+'%</td>'+
+      '<td>'+Math.round(moyennemaquette)+'%</td>'+
+      '<td>'+Math.round(moyennemajs)+'%</td>'+
+      '<td>'+Math.round(moyennegeneral)+'%</td>'+
+      '</tr>'+
+      '</table>';
+
+
+
+ document.getElementById('resultats').innerHTML = s ;
+
+</script>

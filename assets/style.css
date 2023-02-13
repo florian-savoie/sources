@@ -1,0 +1,82 @@
+a{
+text-decoration: none;
+}
+.nav-link{
+    font-size: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem !important;
+    Font-family: Lucida Bright, Géorgie, serif;
+
+
+}
+.navbar-brand{
+    Font-family: Lucida Bright, Géorgie, serif;
+    font-size: 3rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem !important;
+}
+.navbar{
+    background-color: rgba(32, 32, 32, 0.9);
+}
+
+@media (min-width: 992px) and (max-width: 4000px) {
+    
+    .navbarflex{
+    display: flex !important;
+   justify-content: end !important;
+   padding-left: 1rem;
+   padding-right: 1rem;
+}
+.blockprincipal{
+ display: flex;
+align-items: center;
+padding: 2.5rem;
+
+}
+.lignecard{
+    display: flex;
+    justify-content: center;
+}
+.nav-link{
+    font-size: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem !important;
+    Font-family: Lucida Bright, Géorgie, serif;
+
+
+}
+.navbar-brand{
+    Font-family: Lucida Bright, Géorgie, serif;
+    font-size: 3rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem !important;
+}
+}
+
+@media (min-width: 0px) and (max-width: 991px) {
+
+    .lignecard{
+        display: flex;
+        justify-content: center;
+}
+.carte{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.nav-link{
+    font-size: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem !important;
+    Font-family: Lucida Bright, Géorgie, serif;
+
+
+}
+.navbar-brand{
+    Font-family: Lucida Bright, Géorgie, serif;
+    font-size: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem !important;
+}
+
+}

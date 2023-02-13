@@ -1,0 +1,12 @@
+.form {
+    color : red ;
+    height: 25vh!important;
+    width: 50%;
+    border-radius: 1.5rem !important;
+    background-color: aqua;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7ifF6CPp_XVhxnmRr91yW6cfHanbl-jhvSA&usqp=CAU);
+background-size: cover;
+}
+.formblock{
+    height: 100vh;
+}

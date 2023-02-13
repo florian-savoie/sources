@@ -1,0 +1,128 @@
+<body style="background-image: url('assets/img/ciel.jpg');background-size: cover;
+">
+
+<div id="vueXY"></div>
+
+ 
+<script>
+function $(x){return document.getElementById(x);}
+var e = Array();
+
+function getEntityById(id){
+	for(let n=0;n<e.length; n++){if(e[n].id==id) return e[n];}
+	return null;
+}
+function onDivMouseDown(id,iid){
+
+}
+function onDivMouseUp(id,D=null) {
+
+}
+//let vue = 'xz';
+
+var DragHandler = {
+	_D : null,
+	v:null,
+	iid:null,
+	divXZLeft:null,
+	xx:null,
+	attach : function(D) {
+		D.onmousedown = DragHandler._dragBegin;
+		D.dragBegin = new Function();
+		D.drag = new Function();
+		D.dragEnd = new Function();
+		return D;
+	},
+	_dragBegin : function(e) {
+		var D = DragHandler._D = this;
+		if (isNaN(parseInt(D.style.left))) {D.style.left='0px';}
+		if (isNaN(parseInt(D.style.top))) {D.style.top='0px';}
+		var x = parseInt(D.style.left);
+		var y = parseInt(D.style.top);
+		e = e ? e : window.event;
+		D.mouseX = e.clientX;
+		D.mouseY = e.clientY;
+
+		//if(D.style.backgroundColor) $('couleur').value = getHexColor(D.style.backgroundColor);
+
+		v = D.id[0] + D.id[1]; // xy, xz, yz, ou ri = RIGHT VIEW
+		iid = parseInt(D.id.replace(v,''));
+		xx = getEntityById(iid);
+		onDivMouseDown(D.id,iid);
+		//divXZLeft = parseInt($('vueXZ').style.left);
+
+		D.dragBegin(D, x, y);
+		document.onmousemove = DragHandler._drag;
+		document.onmouseup = DragHandler._dragEnd;
+		return false;
+	},
+	_drag : function(e) {
+		var D = DragHandler._D;
+		var x = parseInt(D.style.left);
+		var y = parseInt(D.style.top);
+		e = e ? e : window.event;
+
+		// dÃ©place le div
+		D.style.left = x + (e.clientX - D.mouseX)+'px';
+		D.style.top = y + (e.clientY - D.mouseY)+'px';
+
+		if     (v=='xz') $('xy'+iid).style.left = x+'px';
+		else if(v=='yz') $('xy'+iid).style.top = x+'px';
+		else if(v=='ri') $('xy'+iid).style.top =(divXZLeft - x - xx.l)+'px';
+		/* div XY (TOP) dÃ©placÃ© -> dÃ©place aussi XZ ou XY, magique
+		else {
+			if     (vue=='xz') $('xz'+iid).style.left = x+'px';
+			else if(vue=='yz') $('yz'+iid).style.left = y+'px';
+			else if(vue=='ri') $('ri'+iid).style.left = (divXZLeft - y - xx.l)+'px';
+		}*/
+
+		D.mouseX = e.clientX;
+		D.mouseY = e.clientY;
+		D.drag(D, x, y);
+		return false;
+	},
+	_dragEnd : function() {
+		var D = DragHandler._D;
+		document.onmousemove = null;
+		document.onmouseup = null;
+		DragHandler._D = null;
+
+		// un div a Ã©tÃ© dÃ©placÃ©: marque le groupe comme modifiÃ©
+		//let i = getGroupIdByName(xx.group);
+		//groupes[i].modified=1;
+
+		onDivMouseUp(D.id,D);
+	}
+};
+
+var dragable = Array();
+
+function addDivVueTOP(x){
+	//console.log('addDivVue1('+x.id+' "'+x.group+'" '+x.ident+')');
+	var d = document.createElement('div');
+		d.id 			= 'xy'+x.id;
+		d.style.left	= x.X;
+		d.style.top 	= x.Y;
+		d.style.width	= x.L;
+		d.style.height	= x.l;
+
+		if (x.imgTOP) d.style.backgroundImage = "url('assets/img/"+x.imgTOP+"')";
+		else if(x.couleur) d.style.backgroundColor = x.couleur;
+		else d.style.backgroundColor = 'red';
+	
+		d.style.position= 'absolute';
+		//let visible = groupIsVisible(x.group);
+		d.style.display = 'block';
+		d.style.borderRadius  = x.radius;
+
+		$('vueXY').appendChild(d);
+		dragable[dragable.length] = DragHandler.attach(d);
+	return d;
+}
+
+addDivVueTOP({id:1,X:"1650",Y:"0",L:"200px",l:"200px",imgTOP:"soleil.png",radius:"25%"});
+addDivVueTOP({id:2,X:"0",Y:"0",L:"200px",l:"200px",imgTOP:"nuage.png",radius:"25%"});
+
+</script>
+</body>
+

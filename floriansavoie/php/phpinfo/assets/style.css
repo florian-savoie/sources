@@ -1,0 +1,20 @@
+a{
+text-decoration: none;
+}
+.nav-link{
+    font-size: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem !important;
+    Font-family: Lucida Bright, Géorgie, serif;
+
+
+}
+.navbar-brand{
+    Font-family: Lucida Bright, Géorgie, serif;
+    font-size: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem !important;
+}
+.navbar{
+    background-color: rgba(32, 32, 32, 0.9);
+}

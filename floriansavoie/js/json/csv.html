@@ -1,0 +1,131 @@
+<style>
+    td , th {
+        padding: 1rem;
+    }
+    th{
+        background-color: beige;
+    }
+    td.prenom {
+    text-transform: capitalize;
+    background-color: beige;
+    }
+    td.moyenne{
+        background-color: rgb(159, 159, 143);
+    }
+    caption{
+        color: red ;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+    
+    }
+    #resultats{
+        position: absolute;
+        left:50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+    
+    </style>
+    <div class="block">
+    <div id="resultats"></div>
+    </div>
+
+<script>
+    /*
+// genere un string csv a partir du tableau javascript
+    // tableau contenant le nom et les notes des eleves
+        const test = [
+            //		   Quizz Quizz page Quizz Quizz
+            // [prénom, HTML, CSS, auto, JS,  JS II]
+            ['aurelien', 97, 96, 100, 96, 74],
+            ['benjamin', 90, 92, 100, 92, 48],
+            ['Fares', 98, 88, 0, 100, 52,],
+            ['florian', 87, 100, 75, 100, 70],
+            ['mercutio', 100, 96, 80, 92, 65],
+            ['quentin', 84, 87, 60, 78, 61],
+            ['samuel', 82, 76, 0, 0, 0]
+        ];
+    
+    const s = `
+    aurelien; 97; 96; 100; 96; 74
+    benjamin; 90; 92; 100; 92; 48
+    Fares; 98; 88; 0; 100; 52
+    `;
+    let t = "";
+    for (i in test){
+       t += test[i][0]+";";
+       for ( e=1 ; e < test[i].length; e++)
+        {
+            longeurindex0 = test[i].length;
+            longeurindex0moins1 = longeurindex0 - 1;
+            if (e < longeurindex0moins1) {
+                t += test[i][e]+";" ;
+    
+            } else {
+                t += test[i][e]+"" ;
+            }
+        }
+        t += "\n";
+    }
+    
+    console.log(t);
+
+     // envoie le string csv au serveur en ajax 
+
+    var xhttp = new XMLHttpRequest();
+    
+     //   document.getElementById('info').innerHTML = '';
+    
+        xhttp.open("POST", "ajax.php");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(`csv=`+t);
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                var str = this.responseText;
+                alert(str);
+            }
+        };*/
+       
+
+        const csv =
+` aurelien;97;96;100;96;74
+benjamin;90;92;100;92;48
+Fares;98;88;0;100;52
+florian;87;100;75;100;70
+mercutio;100;96;80;92;65
+quentin;84;87;60;78;61
+samuel;82;76;0;0;0 `;
+
+
+t = csv.split("\n");
+
+
+let s = '<table border="1" style="border-collapse:collapse;" >'+
+        '<caption><strong>Resultat des tests DWWWM</strong> </caption>'+
+        '<th>prenom</th>'+
+        '<th>html</th>'+
+        '<th>css</th>'+
+        '<th>maquette</th>'+
+        '<th>js</th>'+
+        '<th>js2 %</th>';
+for ( n in t ) {
+   
+    t2 = t[n].split(";");
+    s += '<tr>';
+
+   for ( i in t2) {
+    console.log(t2[0]);
+    
+     s +=  '<td class="prenom" >'+t2[i]+'</td>' ;
+      
+
+   }
+    s += '</tr>';
+
+}
+s += `</table>`;
+document.getElementById('resultats').innerHTML = s ;
+
+    </script> 
+
