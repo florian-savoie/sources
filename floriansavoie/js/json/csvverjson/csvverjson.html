@@ -1,0 +1,188 @@
+<script>
+const csv = `aurelien;97;96;100;96;74
+benjamin;90;92;100;92;48
+Fares;98;88;0;100;52
+florian;87;100;75;100;70
+mercutio;100;96;80;92;65
+quentin;84;87;60;78;61
+samuel;82;76;0;0;0`;
+
+
+const json =   `{
+"etudiants":[
+{
+    "nom":"aurelien",
+    "profession":"comptable",
+    "notes":[97, 96, 100, 92, 48]
+},
+{
+    "nom":"benjamin",
+    "profession":"electricien",
+    "notes":[90, 92, 100, 92, 48]
+}
+
+  ]
+}`;
+/*
+const lignes = csv.split(`\n`);
+let strTableHTML = `{\n"etudiants":[\n`;
+
+for (n in lignes){
+   // console.log(lignes[n]);
+    const etudiant = lignes[n].split(`;`);
+    //console.log(etudiant[0]);
+    strTableHTML += `{\n"prenom" :`+`"`+etudiant[0]+`"`+",\n"+`"notes"`+":["+etudiant[1]+","+etudiant[2]+","+etudiant[3]+","+etudiant[4]+","+etudiant[5]+"]\n},\n";
+}
+strTableHTML += `]\n}\n`;
+    console.log(strTableHTML);*/
+
+
+
+
+    // creation de tableau grace a split ( qui cree un tableau a chaque saut a la ligne (\n))
+    const lignes = csv.split(`\n`);
+let strTableHTML = `{\n"etudiants":[\n`;
+
+// creation d'une boucle qui va parcourir le premier tableau et cibler que l'index 0 qui va recuperer que les noms
+for (n in lignes){
+    const etudiant = lignes[n].split(`;`);
+    strTableHTML += `\t{\n\t\t"prenom" :`+ etudiant[0] +",\n"+
+                    `\t\t"notes" :[`;
+ // creation d'une boucle qui va parcourir l'interieur de chaque  tableau et cibler a partir de l'index 1 pour avoir les notes 
+for (i=1 ; i < etudiant.length ; i++){
+    // condition permettant de retirer la virgule si c'est le derniere elements du tableau 
+    if ( i< etudiant.length-1){
+       strTableHTML +=  etudiant[i]+"," ; 
+    }
+    else
+    strTableHTML +=  etudiant[i] ; 
+    }
+        // condition permettant de retirer la virgule si c'est le derniere elements du tableau 
+    if ( n < lignes.length-1){
+        strTableHTML += "]\n\t},\n";
+    }
+    else
+    strTableHTML += "]\n\t}\n";
+}
+strTableHTML += `]\n}\n`;
+    console.log(strTableHTML);
+</script>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>tableau sous format XML  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+
+  </style>
+
+</head>
+
+<body style="background-color: aliceblue;">
+  <div class="container min-vh-100  " style="background-color: rgb(169, 173, 173);">
+
+
+    <div class="row p-5">
+
+<div class="col-md-12 col-lg-6">
+<p class="text-center" style="color: red;"><strong> tableau json cree grace a un tableau csv</strong></p>
+<textarea name="" id="" style="width: 100%;" rows="60">
+
+{
+    "etudiants":[
+        {
+            "prenom" :aurelien,
+            "notes" :[97,96,100,96,74]
+        },
+        {
+            "prenom" :benjamin,
+            "notes" :[90,92,100,92,48]
+        },
+        {
+            "prenom" :Fares,
+            "notes" :[98,88,0,100,52]
+        },
+        {
+            "prenom" :florian,
+            "notes" :[87,100,75,100,70]
+        },
+        {
+            "prenom" :mercutio,
+            "notes" :[100,96,80,92,65]
+        },
+        {
+            "prenom" :quentin,
+            "notes" :[84,87,60,78,61]
+        },
+        {
+            "prenom" :samuel,
+            "notes" :[82,76,0,0,0]
+        }
+    ]
+    }
+</textarea>
+
+</div>
+
+
+
+<div class="col-md-12 col-lg-6">
+<p class="text-center" style="color: red;"><strong>CODE JS PERMETANT DE CREE UN TABLEAU JSON a partie d'un tableau csv </strong></p>
+
+<textarea name="" id="" style="width: 100%;" rows="60">
+
+    
+    const csv = `aurelien;97;96;100;96;74
+    benjamin;90;92;100;92;48
+    Fares;98;88;0;100;52
+    florian;87;100;75;100;70
+    mercutio;100;96;80;92;65
+    quentin;84;87;60;78;61
+    samuel;82;76;0;0;0`;
+
+    // creation de tableau grace a split ( qui cree un tableau a chaque saut a la ligne (\n))
+    const lignes = csv.split(`\n`);
+let strTableHTML = `{\n"etudiants":[\n`;
+
+// creation d'une boucle qui va parcourir le premier tableau et cibler que l'index 0 qui va recuperer que les noms
+for (n in lignes){
+    const etudiant = lignes[n].split(`;`);
+    strTableHTML += `\t{\n\t\t"prenom" :`+ etudiant[0] +",\n"+
+                    `\t\t"notes" :[`;
+ // creation d'une boucle qui va parcourir l'interieur de chaque  tableau et cibler a partir de l'index 1 pour avoir les notes 
+for (i=1 ; i < etudiant.length ; i++){
+    // condition permettant de retirer la virgule si c'est le derniere elements du tableau 
+    if ( i< etudiant.length-1){
+       strTableHTML +=  etudiant[i]+"," ; 
+    }
+    else
+    strTableHTML +=  etudiant[i] ; 
+    }
+        // condition permettant de retirer la virgule si c'est le derniere elements du tableau 
+    if ( n < lignes.length-1){
+        strTableHTML += "]\n\t},\n";
+    }
+    else
+    strTableHTML += "]\n\t}\n";
+}
+strTableHTML += `]\n}\n`;
+    console.log(strTableHTML);
+
+</textarea>
+
+</div>
+
+
+
+
+
+      </div>
+    </div>
+</body>
+
+  </div>

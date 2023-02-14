@@ -43,7 +43,7 @@
             ['florian', 87, 100, 75, 100, 70],
             ['mercutio', 100, 96, 80, 92, 65],
             ['quentin', 84, 87, 60, 78, 61],
-            ['samuel', 82, 76, 0, 0, 0]
+            ['samuel', 82, 76, 70, 84, 60]
         ];
     
     const s = `
@@ -87,7 +87,7 @@
             }
         };*/
        
-
+/*
         const csv =
 ` aurelien;97;96;100;96;74
 benjamin;90;92;100;92;48
@@ -95,7 +95,7 @@ Fares;98;88;0;100;52
 florian;87;100;75;100;70
 mercutio;100;96;80;92;65
 quentin;84;87;60;78;61
-samuel;82;76;0;0;0 `;
+samuel;82;76;70;84;60 `;
 
 
 t = csv.split("\n");
@@ -108,7 +108,7 @@ let s = '<table border="1" style="border-collapse:collapse;" >'+
         '<th>css</th>'+
         '<th>maquette</th>'+
         '<th>js</th>'+
-        '<th>js2 %</th>';
+        '<th>js2 </th>';
 for ( n in t ) {
    
     t2 = t[n].split(";");
@@ -127,5 +127,46 @@ for ( n in t ) {
 s += `</table>`;
 document.getElementById('resultats').innerHTML = s ;
 
+*/
+
+
+const test = [
+    ['aurelien',97,96,92,96],//note sur 100 quizz html , quizz css , page produit
+    ['benjamin',90,92,92,92],
+    ['Fares',98,88,92,100],
+    ['florian',87,100,92,100],
+    ['mercutio',100,96,92,92],
+    ['quentin',84,87,92,78],
+    ['samuel',82,76,92,0]
+];
+
+
+//génere un string CSV  1ere methode 
+let tableaucsv = ``;
+for (n  in test){
+      for (i in test[n]){
+        // si ce n'est pas la derniere note , envoie la note et ;
+       if ( i < test[n].length-1)
+        tableaucsv += test[n][i]+`;`;
+        // sinon envoie la note sans point virgule
+       else tableaucsv += test[n][i];    
+
+      }
+      tableaucsv += `\n`;
+}
+
+
+//génere un string CSV  2eme methode 
+/*
+let tableaucsv = ``;
+for (n  in test){
+      for (i in test[n]){
+        const virgule = ( i < test[n].length-1) ? `;` : ``;
+        tableaucsv += test[n][i] + virgule ;
+      }
+      tableaucsv += `\n`;
+}
+*/
+console.log(tableaucsv);
     </script> 
 

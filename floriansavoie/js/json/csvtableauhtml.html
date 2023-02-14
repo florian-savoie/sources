@@ -1,0 +1,29 @@
+<script>
+
+const csv = `aurelien;97;96;100;96;74
+benjamin;90;92;100;92;48
+Fares;98;88;0;100;52
+florian;87;100;75;100;70
+mercutio;100;96;80;92;65
+quentin;84;87;60;78;61
+samuel;82;76;0;0;0`;
+
+const lignes = csv.split(`\n`);
+let strTableHTML = `<table>\n\n`;
+for (n in lignes){
+   // console.log(lignes[n]);
+    const etudiant = lignes[n].split(`;`);
+    //console.log(etudiant[0]);
+    strTableHTML += `<tr>\n`+
+                    `\t<td>`+etudiant[0]+`</td>\n`+
+                    `\t<td>`+etudiant[1]+`</td>\n`+
+                    `\t<td>`+etudiant[2]+`</td>\n`+
+                    `\t<td>`+etudiant[3]+`</td>\n`+
+                    `\t<td>`+etudiant[4]+`</td>\n`+
+                    `\t<td>`+etudiant[5]+`</td>\n`+
+                    `</tr>\n\n`;
+}
+strTableHTML += `</table>\n`;
+    console.log(strTableHTML);
+
+</script>

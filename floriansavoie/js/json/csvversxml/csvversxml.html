@@ -1,0 +1,31 @@
+<script>
+    const csv = `aurelien;97;96;100;96;74
+benjamin;90;92;100;92;48
+Fares;98;88;0;100;52
+florian;87;100;75;100;70
+mercutio;100;96;80;92;65
+quentin;84;87;60;78;61
+samuel;82;76;0;0;0`;
+    const quizz = ["nom","quizzhtml","quizzcss","voiture","quizzjs1","quizzjs2"];
+
+        // creation de tableau grace a split ( qui cree un tableau a chaque saut a la ligne (\n))
+        const lignes = csv.split(`\n`);
+    let strTableHTML = `<?xml version="1.0" encoding="UTF-8"?>\n\n`+
+                       `<etudiant>\n`;
+    
+    // creation d'une boucle qui va parcourir le premier tableau et cibler que l'index 0 qui va recuperer que les noms
+    for (n in lignes){
+        const etudiant = lignes[n].split(`;`);
+        strTableHTML += `\t\n`;
+                       
+     // creation d'une boucle qui va parcourir l'interieur de chaque  tableau et cibler a partir de l'index 1 pour avoir les notes 
+    for (i=0 ; i < etudiant.length ; i++){
+        // condition permettant de retirer la virgule si c'est le derniere elements du tableau 
+        strTableHTML +=  "\t<"+quizz[i]+">"+etudiant[i]+"/"+"<"+quizz[i]+">"+"\n" ;
+    }
+    strTableHTML += `\n`;
+}strTableHTML += `\t\n`+
+         `<etudiant>`;
+    
+        console.log(strTableHTML);
+    </script>
